@@ -1,7 +1,23 @@
+import Button from "./components/atoms/Button/Button";
+
+import { PlayIcon } from "@heroicons/react/20/solid";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
+
 const App = () => (
-  <h1 className="text-3xl font-bold text-red-500 underline text-center">
-    Hello world!
-  </h1>
+  <>
+    <Button
+      icon={<PlayIcon className="w-8 h-8" />}
+      text="Переглянути"
+      background="bg-white"
+      color="text-black"
+    />
+    <Button
+      icon={<InformationCircleIcon className="w-8 h-8" />}
+      text="Докладніше"
+      background="bg-custom-gray"
+      color="text-white"
+    />
+  </>
 );
 
 export default App;
