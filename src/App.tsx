@@ -1,7 +1,5 @@
-const App = () => (
-  <h1 className="text-3xl font-bold text-red-500 underline text-center">
-    Hello world!
-  </h1>
-);
+import Search from "./components/atoms/Search";
+
+const App = () => <Search />;
 
 export default App;
