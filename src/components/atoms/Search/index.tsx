@@ -1,18 +1,27 @@
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, { FC, FocusEvent, useState, useRef, useEffect } from "react";
 
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const Search: FC = () => {
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
   const searchInput = useRef<HTMLInputElement | null>(null);
 
-  const handleClick = () => {
+  const handleToggle = () => {
     setToggleSearchBar(!toggleSearchBar);
   };
 
-  const handleBlur = () => {
-    setToggleSearchBar(false);
+  const handleClear = () => {
+    if (searchInput.current) {
+      searchInput.current.value = "";
+      searchInput.current.focus();
+    }
+  };
+
+  const handleBlur = (e: FocusEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setToggleSearchBar(false);
+    }
   };
 
   useEffect(() => {
@@ -23,15 +32,17 @@ const Search: FC = () => {
 
   return (
     <div
-      className={`h-10 flex justify-between items-center gap-3 pl-1 ${
+      tabIndex={0}
+      onBlur={handleBlur}
+      className={`h-10 flex justify-between items-center gap-3 ${
         toggleSearchBar
-          ? "w-56 bg-black border border-white transition-all duration-300 "
+          ? "w-56 p-1 bg-black border border-white transition-all duration-300 "
           : "w-6"
       }`}
     >
       <MagnifyingGlassIcon
         className="min-w-fit min-h-fit bg-transparent text-white cursor-pointer"
-        onClick={handleClick}
+        onClick={handleToggle}
       />
       <input
         type="search"
@@ -39,11 +50,18 @@ const Search: FC = () => {
         ref={searchInput}
         className={
           toggleSearchBar
-            ? "w-full h-full bg-transparent text-white outline-none"
+            ? "w-full h-full bg-transparent text-white outline-none search-input"
             : "w-0 h-0"
         }
-        onBlur={handleBlur}
       ></input>
+      <XMarkIcon
+        className={
+          toggleSearchBar
+            ? "min-w-fit min-h-fit bg-transparent text-white cursor-pointer"
+            : "w-0 h-0"
+        }
+        onClick={handleClear}
+      />
     </div>
   );
 };
