@@ -5,10 +5,10 @@ import ROUTES from "../../../constants/routes";
 
 const isAuthorized: boolean = false;
 
-export const PrivateRoutes: FC = () => {
+export const AuthRoute: FC = () => {
   return isAuthorized ? <Outlet /> : <Navigate to={ROUTES.SIGN_IN} />;
 };
 
-export const PrivateRoute: FC = () => {
+export const NonAuthRoute: FC = () => {
   return isAuthorized ? <Navigate to={ROUTES.HOME} /> : <Outlet />;
 };

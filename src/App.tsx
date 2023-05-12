@@ -10,7 +10,7 @@ import Movies from "./UI/pages/Movies";
 import Trending from "./UI/pages/Trending";
 import Movie from "./UI/pages/Movie";
 
-import { PrivateRoutes, PrivateRoute } from "./UI/pages/PrivateRoutes";
+import { AuthRoute, NonAuthRoute } from "./UI/pages/PrivateRoutes";
 import UserProfile from "./UI/pages/UserProfile";
 import Favourites from "./UI/pages/Favourites";
 
@@ -18,17 +18,17 @@ import NotFound from "./UI/pages/NotFound";
 
 const App: FC = () => (
   <Routes>
-    <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-    <Route element={<PrivateRoute />}>
-      <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
-    </Route>
     <Route path={ROUTES.HOME} element={<Home />} />
     <Route path={ROUTES.MOVIES} element={<Movies />} />
     <Route path={ROUTES.TRENDING} element={<Trending />} />
     <Route path={ROUTES.MOVIE} element={<Movie />} />
-    <Route element={<PrivateRoutes />}>
+    <Route element={<AuthRoute />}>
       <Route path={ROUTES.USER_PROFILE} element={<UserProfile />} />
       <Route path={ROUTES.FAVOURITES} element={<Favourites />} />
+    </Route>
+    <Route element={<NonAuthRoute />}>
+      <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+      <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
     </Route>
     <Route path="*" element={<NotFound />} />
   </Routes>
