@@ -2,11 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
     extend: {
       colors: {
-        "custom-dark-gray": "#333",
-        "custom-orange": "#e87c03",
+        neutral: {
+          850: "#333333",
+        },
+        orange: {
+          550: "#e87c03",
+        },
       },
     },
   },

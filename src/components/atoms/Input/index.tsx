@@ -3,16 +3,28 @@ import React, { FC } from "react";
 interface IInput {
   type: string;
   name: string;
+  value?: string | number;
   placeholder?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className: string;
 }
 
-const Input: FC<IInput> = ({ type, name, placeholder }) => (
+const Input: FC<IInput> = ({
+  type,
+  name,
+  value,
+  placeholder,
+  onChange,
+  className,
+}) => (
   <input
     type={type}
     name={name}
+    value={value}
     placeholder={placeholder}
-    className="w-full h-[50px] p-4 bg-custom-dark-gray text-white border-b-2 rounded border-custom-orange outline-none"
-  ></input>
+    onChange={onChange}
+    className={className}
+  />
 );
 
 export default Input;
