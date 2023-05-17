@@ -7,7 +7,9 @@ interface IInput {
   ref?: React.Ref<HTMLInputElement>;
   placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  variant?: string;
+  padding?: "none" | "medium";
+  color?: "default" | "transparent";
+  border?: boolean;
 }
 
 const Input: FC<IInput> = ({
@@ -17,19 +19,18 @@ const Input: FC<IInput> = ({
   ref,
   placeholder,
   onChange,
-  variant,
+  padding,
+  color,
+  border,
 }) => {
-  const searchInputStyle: string = "w-full h-full bg-transparent";
-  const hiddenInputStyle: string = "hidden";
-  const defaultInputStyle: string =
-    "w-full h-[50px] p-4 bg-neutral-850 border-b-2 rounded border-orange-550";
+  const inputPadding = padding === "medium" ? "p-4" : "p-0";
 
-  const inputVariant =
-    variant === "search"
-      ? searchInputStyle
-      : variant === "hidden"
-      ? hiddenInputStyle
-      : defaultInputStyle;
+  const inputColor =
+    color === "transparent" ? "bg-transparent" : "bg-neutral-850";
+
+  const inputBorder = border
+    ? "border-b-2 border-orange-550 rounded"
+    : "border-0";
 
   return (
     <input
@@ -39,7 +40,7 @@ const Input: FC<IInput> = ({
       placeholder={placeholder}
       ref={ref}
       onChange={onChange}
-      className={`text-white outline-none appearance-none ${inputVariant}`}
+      className={`w-full h-full text-white outline-none appearance-none ${inputPadding} ${inputColor} ${inputBorder}`}
     />
   );
 };
