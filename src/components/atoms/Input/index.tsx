@@ -7,9 +7,7 @@ interface IInput {
   ref?: React.Ref<HTMLInputElement>;
   placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  padding?: "none" | "medium";
-  color?: "default" | "transparent";
-  border?: boolean;
+  className?: "filled" | "transparent";
 }
 
 const Input: FC<IInput> = ({
@@ -19,18 +17,18 @@ const Input: FC<IInput> = ({
   ref,
   placeholder,
   onChange,
-  padding,
-  color,
-  border,
+  className,
 }) => {
-  const inputPadding = padding === "medium" ? "p-4" : "p-0";
-
-  const inputColor =
-    color === "transparent" ? "bg-transparent" : "bg-neutral-850";
-
-  const inputBorder = border
-    ? "border-b-2 border-orange-550 rounded"
-    : "border-0";
+  const generateClassName = () => {
+    switch (className) {
+      case "filled":
+        return "bg-neutral-850 text-white border-b-2 border-orange-550 rounded p-4";
+      case "transparent":
+        return "bg-transparent text-white";
+      default:
+        return "bg-white text-black border border-black p-1";
+    }
+  };
 
   return (
     <input
@@ -40,7 +38,7 @@ const Input: FC<IInput> = ({
       placeholder={placeholder}
       ref={ref}
       onChange={onChange}
-      className={`w-full h-full text-white outline-none appearance-none ${inputPadding} ${inputColor} ${inputBorder}`}
+      className={`w-full h-full outline-none appearance-none ${generateClassName()}`}
     />
   );
 };
