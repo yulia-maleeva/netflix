@@ -2,6 +2,8 @@ import React, { FC, FocusEvent, useState, useRef, useEffect } from "react";
 
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
+import Input from "../../atoms/Input";
+
 const Search: FC = () => {
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
@@ -44,16 +46,14 @@ const Search: FC = () => {
         className="min-w-fit min-h-fit bg-transparent text-white cursor-pointer"
         onClick={handleToggle}
       />
-      <input
+      <Input
         type="search"
+        name="search"
+        inputRef={searchInput}
         placeholder="Назва"
-        ref={searchInput}
-        className={
-          toggleSearchBar
-            ? "w-full h-full bg-transparent text-white outline-none search-input"
-            : "w-0 h-0"
-        }
-      ></input>
+        variant="transparent"
+        className="search-input"
+      />
       <XMarkIcon
         className={
           toggleSearchBar
