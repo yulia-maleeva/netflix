@@ -7,7 +7,8 @@ interface IInput {
   ref?: React.Ref<HTMLInputElement>;
   placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  className?: "filled" | "transparent";
+  variant?: "filled" | "transparent";
+  className?: string;
 }
 
 const Input: FC<IInput> = ({
@@ -17,10 +18,11 @@ const Input: FC<IInput> = ({
   ref,
   placeholder,
   onChange,
+  variant,
   className,
 }) => {
-  const generateClassName = () => {
-    switch (className) {
+  const generateInputVariant = () => {
+    switch (variant) {
       case "filled":
         return "bg-neutral-850 text-white border-b-2 border-orange-550 rounded p-4";
       case "transparent":
@@ -38,7 +40,7 @@ const Input: FC<IInput> = ({
       placeholder={placeholder}
       ref={ref}
       onChange={onChange}
-      className={`w-full h-full outline-none appearance-none ${generateClassName()}`}
+      className={`w-full h-full outline-none appearance-none ${generateInputVariant()} ${className}`}
     />
   );
 };
