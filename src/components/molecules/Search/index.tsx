@@ -1,67 +1,80 @@
-import React, { FC, FocusEvent, useState, useRef, useEffect } from "react";
+import React, { FC, useState, useRef } from "react";
 
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import Input from "../../atoms/Input";
 
-const Search: FC = () => {
+interface ISearch {
+  searchBarValue?: string | number;
+  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Search: FC<ISearch> = ({ searchBarValue, handleChange }) => {
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
   const searchInput = useRef<HTMLInputElement | null>(null);
 
   const handleToggle = () => {
     setToggleSearchBar(!toggleSearchBar);
+
+    //clear input
+    if (!toggleSearchBar) {
+      handleChange?.({
+        target: { value: "" },
+      } as React.ChangeEvent<HTMLInputElement>);
+    }
   };
 
   const handleClear = () => {
+    //clear input
+    handleChange?.({
+      target: { value: "" },
+    } as React.ChangeEvent<HTMLInputElement>);
+
+    //add focus after clearing
     if (searchInput.current) {
-      searchInput.current.value = "";
       searchInput.current.focus();
     }
   };
 
-  const handleBlur = (e: FocusEvent<HTMLDivElement>) => {
+  const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    //close if outclick
     if (!e.currentTarget.contains(e.relatedTarget)) {
       setToggleSearchBar(false);
     }
   };
 
-  useEffect(() => {
-    if (searchInput.current) {
-      searchInput.current.focus();
-    }
-  }, [toggleSearchBar]);
-
   return (
     <div
       tabIndex={0}
-      onBlur={handleBlur}
-      className={`h-10 flex justify-between items-center gap-3 ${
-        toggleSearchBar
-          ? "w-56 p-1 bg-black border border-white transition-all duration-300 "
-          : "w-6"
+      className={`w-fit h-9 flex justify-between items-center gap-3 p-1 ${
+        toggleSearchBar ? "border border-white transition-all duration-300" : ""
       }`}
+      onBlur={handleBlur}
     >
       <MagnifyingGlassIcon
-        className="min-w-fit min-h-fit bg-transparent text-white cursor-pointer"
+        className="max-w-[24px] w-full max-h-[24px] h-full text-white cursor-pointer"
         onClick={handleToggle}
       />
-      <Input
-        type="search"
-        name="search"
-        inputRef={searchInput}
-        placeholder="Назва"
-        variant="transparent"
-        className="search-input"
-      />
-      <XMarkIcon
-        className={
-          toggleSearchBar
-            ? "min-w-fit min-h-fit bg-transparent text-white cursor-pointer"
-            : "w-0 h-0"
-        }
-        onClick={handleClear}
-      />
+      {toggleSearchBar && (
+        <>
+          <Input
+            type="search"
+            name="search"
+            value={searchBarValue}
+            inputRef={searchInput}
+            placeholder="Movie title"
+            onChange={handleChange}
+            variant="transparent"
+            className="search-input"
+            focus={true}
+          />
+          <XMarkIcon
+            className="max-w-[24px] w-full max-h-[24px] h-full text-white cursor-pointer"
+            onClick={handleClear}
+          />
+        </>
+      )}
     </div>
   );
 };

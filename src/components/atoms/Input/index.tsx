@@ -9,6 +9,7 @@ interface IInput {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   variant?: "filled" | "transparent";
   className?: string;
+  focus?: boolean;
 }
 
 const Input: FC<IInput> = ({
@@ -20,6 +21,7 @@ const Input: FC<IInput> = ({
   onChange,
   variant,
   className,
+  focus,
 }) => {
   const generateInputVariant = () => {
     switch (variant) {
@@ -37,10 +39,11 @@ const Input: FC<IInput> = ({
       type={type}
       name={name}
       value={value}
-      placeholder={placeholder}
       ref={inputRef}
+      placeholder={placeholder}
       onChange={onChange}
       className={`w-full h-full outline-none appearance-none ${generateInputVariant()} ${className}`}
+      autoFocus={focus}
     />
   );
 };
