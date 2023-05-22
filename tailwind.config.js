@@ -4,7 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        "custom-gray": "#6D6D6EB3",
+        neutral: {
+          850: "#333333",
+        },
+        red: {
+          650: "#e50914",
+        },
+        orange: {
+          550: "#e87c03",
+        },
+        gray: {
+          350: "#6d6d6eb3",
+        },
       },
     },
   },

@@ -1,19 +1,33 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 
 interface IButton {
-  text: string;
-  icon?: ReactNode;
-  background: string;
-  color: string;
+  variant?: "white" | "gray" | "red";
+  className?: string;
+  children?: React.ReactNode;
+  handleClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button: FC<IButton> = ({ icon, text, background, color }) => (
-  <button
-    className={`flex items-center gap-3 p-3 text-2xl font-medium ${background} ${color} rounded hover:opacity-80 `}
-  >
-    {icon}
-    <p>{text}</p>
-  </button>
-);
+const Button: FC<IButton> = ({ variant, className, children, handleClick }) => {
+  const generateButtonVariant = () => {
+    switch (variant) {
+      case "white":
+        return "bg-white text-black";
+      case "gray":
+        return "bg-gray-350 text-white";
+      case "red":
+        return "bg-red-650 text-white";
+      default:
+        return "bg-white text-black border border-black";
+    }
+  };
+  return (
+    <button
+      className={`flex justify-center items-center gap-3 p-3 text-2xl font-medium rounded hover:opacity-80 ${generateButtonVariant()} ${className}`}
+      onClick={handleClick}
+    >
+      {children || "Click"}
+    </button>
+  );
+};
 
 export default Button;
