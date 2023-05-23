@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 
 import Input from "../../atoms/Input";
+import Button from "../../atoms/Button";
 import FormErrorMessage from "../../atoms/FormErrorMessage";
 
 interface IFormInputs {
@@ -111,6 +112,9 @@ const RegistrationForm: FC = () => {
           </>
         )}
       />
+      <Button variant="red" className="w-[200px] mt-5">
+        Register
+      </Button>
     </form>
   );
 };

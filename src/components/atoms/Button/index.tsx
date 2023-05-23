@@ -4,7 +4,7 @@ interface IButton {
   variant?: "white" | "gray" | "red";
   className?: string;
   children?: React.ReactNode;
-  handleClick: React.MouseEventHandler<HTMLButtonElement>;
+  handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button: FC<IButton> = ({ variant, className, children, handleClick }) => {
