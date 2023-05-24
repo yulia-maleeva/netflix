@@ -34,7 +34,9 @@ const Input: FC<IInput> = forwardRef(
         placeholder={placeholder}
         ref={ref}
         onChange={onChange}
-        className={`w-full h-full outline-none appearance-none ${generateInputVariant()} ${className}`}
+        className={`w-full h-full outline-none appearance-none ${generateInputVariant()} ${
+          className || ""
+        }`}
       />
     );
   }

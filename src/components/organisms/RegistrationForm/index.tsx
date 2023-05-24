@@ -1,16 +1,15 @@
 import React, { FC } from "react";
 
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { IFormInputs } from "../../../types";
 
 import Input from "../../atoms/Input";
-import Button from "../../atoms/Button";
 import FormErrorMessage from "../../atoms/FormErrorMessage";
-
-interface IFormInputs {
-  firstName: string;
-  email: string;
-  password: string;
-}
+import Button from "../../atoms/Button";
+import {
+  EmailController,
+  PasswordController,
+} from "../../molecules/FormControllers";
 
 const RegistrationForm: FC = () => {
   const {
@@ -62,58 +61,10 @@ const RegistrationForm: FC = () => {
           </>
         )}
       />
-      <Controller
-        name="email"
-        control={control}
-        rules={{
-          required: "Email is required",
-          pattern: {
-            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-            message:
-              "Invalid email address. Please enter a valid email address in the format 'example@example.com'.",
-          },
-        }}
-        render={({ field }) => (
-          <>
-            <Input
-              type="email"
-              placeholder="Email"
-              variant="filled"
-              {...field}
-            />
-            {errors.email && (
-              <FormErrorMessage errorMessage={errors.email.message} />
-            )}
-          </>
-        )}
-      />
-      <Controller
-        name="password"
-        control={control}
-        rules={{
-          required: "Password is required",
-          pattern: {
-            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
-            message:
-              "Password must be at least 8 characters long and include a combination of uppercase letters, lowercase letters, and digits.",
-          },
-        }}
-        render={({ field }) => (
-          <>
-            <Input
-              type="password"
-              placeholder="Password"
-              variant="filled"
-              {...field}
-            />
-            {errors.password && (
-              <FormErrorMessage errorMessage={errors.password.message} />
-            )}
-          </>
-        )}
-      />
+      <EmailController control={control} variant="filled" />
+      <PasswordController control={control} variant="filled" />
       <Button variant="red" className="w-[200px] mt-5">
-        Register
+        Sign up
       </Button>
     </form>
   );
