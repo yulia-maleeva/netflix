@@ -1,25 +1,58 @@
 import React, { FC } from "react";
 
-import { Controller, Control } from "react-hook-form";
+import { Controller, Control, FieldValues } from "react-hook-form";
 import { IFormInputs } from "../../../types";
 
 import Input from "../../atoms/Input";
 import FormErrorMessage from "../../atoms/FormErrorMessage";
 
 interface IController {
+  name: keyof IFormInputs;
   control: Control<IFormInputs>;
+  rules?: FieldValues;
+  placeholder?: string;
   variant?: "filled" | "transparent";
   className?: string;
 }
 
+export const TextController: FC<IController> = ({
+  name,
+  control,
+  rules,
+  placeholder,
+  variant,
+  className,
+}) => {
+  return (
+    <Controller
+      name={name}
+      control={control}
+      rules={rules}
+      render={({ field, fieldState: { error } }) => (
+        <>
+          <Input
+            type="text"
+            placeholder={placeholder}
+            variant={variant}
+            className={className}
+            {...field}
+          />
+          {error && <FormErrorMessage errorMessage={error.message} />}
+        </>
+      )}
+    />
+  );
+};
+
 export const EmailController: FC<IController> = ({
+  name,
   control,
   variant,
   className,
 }) => {
   return (
     <Controller
-      name="email"
+      name={name}
       control={control}
       rules={{
         required: "Email is required",
@@ -46,13 +79,14 @@ export const EmailController: FC<IController> = ({
 };
 
 export const PasswordController: FC<IController> = ({
+  name,
   control,
   variant,
   className,
 }) => {
   return (
     <Controller
-      name="password"
+      name={name}
       control={control}
       rules={{
         required: "Password is required",

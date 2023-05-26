@@ -1,23 +1,17 @@
 import React, { FC } from "react";
 
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { IFormInputs } from "../../../types";
 
-import Input from "../../atoms/Input";
-import FormErrorMessage from "../../atoms/FormErrorMessage";
 import Button from "../../atoms/Button";
 import {
+  TextController,
   EmailController,
   PasswordController,
 } from "../../molecules/FormControllers";
 
 const RegistrationForm: FC = () => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    reset,
-  } = useForm<IFormInputs>({
+  const { handleSubmit, control, reset } = useForm<IFormInputs>({
     defaultValues: {
       firstName: "",
       email: "",
@@ -37,7 +31,7 @@ const RegistrationForm: FC = () => {
       className="w-full flex flex-col gap-4 p-8 bg-black rounded"
     >
       <h1 className="mb-5 text-[32px] font-medium text-white">Registration</h1>
-      <Controller
+      <TextController
         name="firstName"
         control={control}
         rules={{
@@ -47,22 +41,11 @@ const RegistrationForm: FC = () => {
             message: "First name should be at least 3 characters",
           },
         }}
-        render={({ field }) => (
-          <>
-            <Input
-              type="text"
-              placeholder="First Name"
-              variant="filled"
-              {...field}
-            />
-            {errors.firstName && (
-              <FormErrorMessage errorMessage={errors.firstName.message} />
-            )}
-          </>
-        )}
+        placeholder="Name"
+        variant="filled"
       />
-      <EmailController control={control} variant="filled" />
-      <PasswordController control={control} variant="filled" />
+      <EmailController name="email" control={control} variant="filled" />
+      <PasswordController name="password" control={control} variant="filled" />
       <Button variant="red" className="w-[200px] mt-5">
         Sign up
       </Button>
