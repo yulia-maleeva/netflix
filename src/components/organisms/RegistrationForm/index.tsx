@@ -3,7 +3,11 @@ import React, { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IFormInputs } from "../../../types";
 
+import { Link } from "react-router-dom";
+import ROUTES from "../../../constants/routes";
+
 import Button from "../../atoms/Button";
+
 import {
   TextController,
   EmailController,
@@ -28,7 +32,7 @@ const RegistrationForm: FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full flex flex-col gap-4 p-8 bg-black rounded"
+      className="w-full flex flex-col gap-4 p-12 bg-black rounded"
     >
       <h1 className="mb-5 text-[32px] font-medium text-white">Registration</h1>
       <TextController
@@ -46,9 +50,18 @@ const RegistrationForm: FC = () => {
       />
       <EmailController name="email" control={control} variant="filled" />
       <PasswordController name="password" control={control} variant="filled" />
-      <Button variant="red" className="w-[200px] mt-5">
+      <Button type="submit" variant="red" className="w-50 my-5">
         Sign up
       </Button>
+      <p className="text-neutral-500">
+        Already have an account?&nbsp;
+        <Link
+          to={ROUTES.SIGN_IN}
+          className="text-white hover:underline decoration-white"
+        >
+          Sign in
+        </Link>
+      </p>
     </form>
   );
 };
