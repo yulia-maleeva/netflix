@@ -1,19 +1,11 @@
 import React, { FC } from "react";
 
-interface IMovieCard {
-  poster: string;
-  title: string;
-}
-
-const MovieCard: FC<IMovieCard> = ({ poster, title }) => {
+const MovieCard: FC = () => {
   return (
-    <>
-      <img
-        src={poster}
-        alt={title}
-        className="w-full h-full bg-yellow-300 cursor-pointer"
-      />
-    </>
+    <div className="bg-white">
+      <img alt="Image" />
+      <div>Hello</div>
+    </div>
   );
 };
 
