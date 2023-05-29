@@ -50,7 +50,7 @@ const RegistrationForm: FC = () => {
       />
       <EmailController name="email" control={control} variant="filled" />
       <PasswordController name="password" control={control} variant="filled" />
-      <Button variant="red" className="w-[200px] mt-5 mb-5">
+      <Button type="submit" variant="red" className="w-50 my-5">
         Sign up
       </Button>
       <p className="text-neutral-500">
