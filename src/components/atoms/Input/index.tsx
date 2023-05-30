@@ -9,12 +9,12 @@ interface IInput {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   variant?: "filled" | "transparent";
   className?: string;
-  focus?: boolean;
+  autoFocus?: boolean;
 }
 
 const Input: FC<IInput> = forwardRef(
   (
-    { type, name, value, placeholder, onChange, variant, className, focus },
+    { type, name, value, placeholder, onChange, variant, className, autoFocus },
     ref
   ) => {
     const generateInputVariant = () => {
@@ -39,7 +39,7 @@ const Input: FC<IInput> = forwardRef(
         className={`w-full h-full outline-none appearance-none ${generateInputVariant()} ${
           className || ""
         }`}
-        autoFocus={focus}
+        autoFocus={autoFocus}
       />
     );
   }

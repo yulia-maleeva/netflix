@@ -1,29 +1,32 @@
-import React, { FC, useState, RefObject } from "react";
+import React, { FC, useState, useRef } from "react";
 
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import Input from "../../atoms/Input";
 
 interface ISearch {
-  searchBarValue?: string | number;
-  inputRef?: RefObject<HTMLInputElement>;
-  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClear?: (() => void) | undefined;
+  handleChange: (value: string) => void;
+  delay?: number;
 }
 
-const Search: FC<ISearch> = ({
-  searchBarValue,
-  inputRef,
-  handleChange,
-  handleClear,
-}) => {
+const Search: FC<ISearch> = ({ handleChange, delay = 0 }) => {
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
+  const [searchBarValue, setSearchBarValue] = useState("");
+  const [timer, setTimer] = useState<number | undefined>(undefined);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleToggle = () => {
     setToggleSearchBar(!toggleSearchBar);
 
-    if (handleClear) {
-      handleClear();
+    handleClear();
+  };
+
+  const handleClear = () => {
+    setSearchBarValue("");
+
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
   };
 
@@ -31,6 +34,18 @@ const Search: FC<ISearch> = ({
     if (!e.currentTarget.contains(e.relatedTarget)) {
       setToggleSearchBar(false);
     }
+  };
+
+  const handleDelayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    clearTimeout(timer);
+
+    setSearchBarValue(e.target.value);
+
+    setTimer(
+      setTimeout(() => {
+        handleChange(e.target.value);
+      }, delay)
+    );
   };
 
   return (
@@ -53,10 +68,10 @@ const Search: FC<ISearch> = ({
             value={searchBarValue}
             ref={inputRef}
             placeholder="Movie title"
-            onChange={handleChange}
+            onChange={handleDelayChange}
             variant="transparent"
             className="search-input"
-            focus={true}
+            autoFocus={true}
           />
           <XMarkIcon
             className="max-w-[24px] w-full max-h-[24px] h-full text-white cursor-pointer"
