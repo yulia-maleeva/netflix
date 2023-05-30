@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, RefObject } from "react";
 
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -6,39 +6,28 @@ import Input from "../../atoms/Input";
 
 interface ISearch {
   searchBarValue?: string | number;
+  inputRef?: RefObject<HTMLInputElement>;
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClear?: (() => void) | undefined;
 }
 
-const Search: FC<ISearch> = ({ searchBarValue, handleChange }) => {
+const Search: FC<ISearch> = ({
+  searchBarValue,
+  inputRef,
+  handleChange,
+  handleClear,
+}) => {
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
-
-  const searchInput = useRef<HTMLInputElement | null>(null);
 
   const handleToggle = () => {
     setToggleSearchBar(!toggleSearchBar);
 
-    //clear input
-    if (!toggleSearchBar) {
-      handleChange?.({
-        target: { value: "" },
-      } as React.ChangeEvent<HTMLInputElement>);
-    }
-  };
-
-  const handleClear = () => {
-    //clear input
-    handleChange?.({
-      target: { value: "" },
-    } as React.ChangeEvent<HTMLInputElement>);
-
-    //add focus after clearing
-    if (searchInput.current) {
-      searchInput.current.focus();
+    if (handleClear) {
+      handleClear();
     }
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    //close if outclick
     if (!e.currentTarget.contains(e.relatedTarget)) {
       setToggleSearchBar(false);
     }
@@ -62,7 +51,7 @@ const Search: FC<ISearch> = ({ searchBarValue, handleChange }) => {
             type="search"
             name="search"
             value={searchBarValue}
-            inputRef={searchInput}
+            ref={inputRef}
             placeholder="Movie title"
             onChange={handleChange}
             variant="transparent"

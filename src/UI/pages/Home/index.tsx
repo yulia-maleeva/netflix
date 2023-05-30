@@ -1,29 +1,45 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useRef } from "react";
 
 import Search from "../../../components/molecules/Search";
 
 const Home: FC = () => {
   const [searchBarValue, setSearchBarValue] = useState("");
+  const [timer, setTimer] = useState<number | undefined>(undefined);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchBarValue(e.target.value);
-  };
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const fakeApiCall = () => {
+  const fakeApiCall = (searchBarValue: string | number) => {
     console.log(searchBarValue);
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      fakeApiCall();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchBarValue(e.target.value);
+
+    clearTimeout(timer);
+
+    const newTimer = setTimeout(() => {
+      fakeApiCall(searchBarValue);
     }, 2000);
 
-    return () => clearTimeout(timer);
-  }, [searchBarValue]);
+    setTimer(newTimer);
+  };
+
+  const handleClear = () => {
+    setSearchBarValue("");
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
 
   return (
     <>
-      <Search searchBarValue={searchBarValue} handleChange={handleChange} />
+      <Search
+        searchBarValue={searchBarValue}
+        inputRef={inputRef}
+        handleChange={handleChange}
+        handleClear={handleClear}
+      />
     </>
   );
 };
