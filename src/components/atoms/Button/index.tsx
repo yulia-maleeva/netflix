@@ -1,13 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, ButtonHTMLAttributes } from "react";
 
-interface IButton {
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+  type?: "button" | "submit" | "reset";
   variant?: "white" | "gray" | "red";
   className?: string;
   children?: React.ReactNode;
   handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button: FC<IButton> = ({ variant, className, children, handleClick }) => {
+const Button: FC<IButton> = ({
+  type = "button",
+  variant,
+  className,
+  children,
+  handleClick,
+}) => {
   const generateButtonVariant = () => {
     switch (variant) {
       case "white":
@@ -22,6 +29,7 @@ const Button: FC<IButton> = ({ variant, className, children, handleClick }) => {
   };
   return (
     <button
+      type={type}
       className={`flex justify-center items-center gap-3 p-3 text-2xl font-medium rounded hover:opacity-80 ${generateButtonVariant()} ${className}`}
       onClick={handleClick}
     >

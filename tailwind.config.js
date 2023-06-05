@@ -17,6 +17,9 @@ export default {
           350: "#6d6d6eb3",
         },
       },
+      width: {
+        50: "200px",
+      },
     },
   },
   plugins: [],
