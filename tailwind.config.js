@@ -22,5 +22,14 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase }) {
+      addBase({
+        ".search-input::-webkit-search-cancel-button": {
+          "-webkit-appearance": "none",
+          appearance: "none",
+        },
+      });
+    },
+  ],
 };
