@@ -1,5 +1,15 @@
 import React, { FC } from "react";
 
-const NotFound: FC = () => <div>Not Found</div>;
+import MainTemplate from "../../../components/templates/MainTemplate";
+
+const NotFound: FC = () => {
+  return (
+    <>
+      <MainTemplate>
+        <p className="text-green-400">Not Found</p>
+      </MainTemplate>
+    </>
+  );
+};
 
 export default NotFound;

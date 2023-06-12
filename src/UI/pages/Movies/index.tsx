@@ -1,5 +1,15 @@
 import React, { FC } from "react";
 
-const Movies: FC = () => <div>Movies</div>;
+import MainTemplate from "../../../components/templates/MainTemplate";
+
+const Movies: FC = () => {
+  return (
+    <>
+      <MainTemplate>
+        <p className="text-green-400">Movies</p>
+      </MainTemplate>
+    </>
+  );
+};
 
 export default Movies;
