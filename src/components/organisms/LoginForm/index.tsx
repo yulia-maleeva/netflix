@@ -40,7 +40,7 @@ const LoginForm: FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full flex flex-col gap-4"
+      className="w-70 flex flex-col gap-4"
     >
       <h1 className="mb-5 text-[32px] font-medium text-white text-center">
         Login

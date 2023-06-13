@@ -6,11 +6,7 @@ import ROUTES from "../../../constants/routes";
 import Navbar from "../../organisms/Navbar/Navbar";
 import Search from "../../molecules/Search";
 
-interface IMainTemplate {
-  children: React.ReactNode;
-}
-
-const MainTemplate: FC<IMainTemplate> = ({ children }) => {
+const Header: FC = () => {
   const [searchBarValue, setSearchBarValue] = useState("");
 
   const fakeApiCall = (searchBarValue: string) => {
@@ -28,24 +24,19 @@ const MainTemplate: FC<IMainTemplate> = ({ children }) => {
   return (
     <>
       <header className="flex justify-between items-center">
-        <div className="flex items-center gap-[100px]">
+        <div className="flex items-center gap-25">
           <Link to={ROUTES.HOME}>
             <img
               src="/public/assets/svg/logo.svg"
               alt="Logo"
-              className="w-[100px]"
+              className="w-25"
             />
           </Link>
           <Navbar />
         </div>
         <Search handleChange={handleChange} delay={2000} />
       </header>
-      <main>{children}</main>
-      <footer>
-        <p className="text-green-400">Footer</p>
-      </footer>
     </>
   );
 };
-
-export default MainTemplate;
+export default Header;

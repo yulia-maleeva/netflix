@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import AuthLayout from "./components/templates/AuthLayout";
+
 import { Routes, Route } from "react-router-dom";
 import ROUTES from "../src/constants/routes/index";
 
@@ -18,10 +20,38 @@ import NotFound from "./UI/pages/NotFound";
 
 const App: FC = () => (
   <Routes>
-    <Route path={ROUTES.HOME} element={<Home />} />
-    <Route path={ROUTES.MOVIES} element={<Movies />} />
-    <Route path={ROUTES.TRENDING} element={<Trending />} />
-    <Route path={ROUTES.MOVIE} element={<Movie />} />
+    <Route
+      path={ROUTES.HOME}
+      element={
+        <AuthLayout>
+          <Home />
+        </AuthLayout>
+      }
+    />
+    <Route
+      path={ROUTES.MOVIES}
+      element={
+        <AuthLayout>
+          <Movies />
+        </AuthLayout>
+      }
+    />
+    <Route
+      path={ROUTES.TRENDING}
+      element={
+        <AuthLayout>
+          <Trending />
+        </AuthLayout>
+      }
+    />
+    <Route
+      path={ROUTES.MOVIE}
+      element={
+        <AuthLayout>
+          <Movie />
+        </AuthLayout>
+      }
+    />
     <Route element={<AuthRoute />}>
       <Route path={ROUTES.USER_PROFILE} element={<UserProfile />} />
       <Route path={ROUTES.FAVOURITES} element={<Favourites />} />

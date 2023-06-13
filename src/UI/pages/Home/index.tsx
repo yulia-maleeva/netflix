@@ -1,15 +1,5 @@
 import React, { FC } from "react";
 
-import MainTemplate from "../../../components/templates/MainTemplate";
-
-const Home: FC = () => {
-  return (
-    <>
-      <MainTemplate>
-        <p className="text-green-400">Slider</p>
-      </MainTemplate>
-    </>
-  );
-};
+const Home: FC = () => <p className="text-white">Home</p>;
 
 export default Home;
