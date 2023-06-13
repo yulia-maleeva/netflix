@@ -1,6 +1,9 @@
 import React, { FC, useState, useEffect } from "react";
 
 import Search from "../../../components/molecules/Search";
+import Select from "../../../components/molecules/Select";
+
+import { genres } from "../../../constants/mockData";
 
 const Home: FC = () => {
   const [searchBarValue, setSearchBarValue] = useState("");
@@ -20,6 +23,7 @@ const Home: FC = () => {
   return (
     <>
       <Search handleChange={handleChange} delay={2000} />
+      <Select genres={genres} />
     </>
   );
 };
