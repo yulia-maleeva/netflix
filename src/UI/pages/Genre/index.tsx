@@ -1,5 +1,5 @@
 import React, { FC } from "react";
 
-const Genre: FC = () => <div>Genre</div>;
+const Genre: FC = () => <p className="text-white">Genre</p>;
 
 export default Genre;

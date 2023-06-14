@@ -18,7 +18,21 @@ export default {
         },
       },
       width: {
+        25: "100px",
         50: "200px",
+        70: "300px",
+      },
+      gap: {
+        25: "100px",
+      },
+      backgroundImage: {
+        "main-image": "url('/public/assets/images/bg.jpg')",
+      },
+      brightness: {
+        40: "0.4",
+      },
+      padding: {
+        7.5: "30px",
       },
     },
   },
