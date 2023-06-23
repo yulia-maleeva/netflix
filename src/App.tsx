@@ -1,27 +1,33 @@
 import React, { FC } from "react";
 
+import AuthLayout from "./components/templates/AuthLayout";
+
 import { Routes, Route } from "react-router-dom";
 import ROUTES from "../src/constants/routes/index";
 
-import SignUp from "./UI/pages/SignUp";
-import SignIn from "./UI/pages/SignIn";
 import Home from "./UI/pages/Home";
 import Movies from "./UI/pages/Movies";
 import Trending from "./UI/pages/Trending";
+import Genre from "./UI/pages/Genre";
 import Movie from "./UI/pages/Movie";
 
 import { AuthRoute, NonAuthRoute } from "./UI/pages/PrivateRoutes";
 import UserProfile from "./UI/pages/UserProfile";
 import Favourites from "./UI/pages/Favourites";
+import SignUp from "./UI/pages/SignUp";
+import SignIn from "./UI/pages/SignIn";
 
 import NotFound from "./UI/pages/NotFound";
 
 const App: FC = () => (
   <Routes>
-    <Route path={ROUTES.HOME} element={<Home />} />
-    <Route path={ROUTES.MOVIES} element={<Movies />} />
-    <Route path={ROUTES.TRENDING} element={<Trending />} />
-    <Route path={ROUTES.MOVIE} element={<Movie />} />
+    <Route element={<AuthLayout />}>
+      <Route path={ROUTES.HOME} element={<Home />} />
+      <Route path={ROUTES.MOVIES} element={<Movies />} />
+      <Route path={ROUTES.TRENDING} element={<Trending />} />
+      <Route path={ROUTES.GENRE} element={<Genre />} />
+      <Route path={ROUTES.MOVIE} element={<Movie />} />
+    </Route>
     <Route element={<AuthRoute />}>
       <Route path={ROUTES.USER_PROFILE} element={<UserProfile />} />
       <Route path={ROUTES.FAVOURITES} element={<Favourites />} />

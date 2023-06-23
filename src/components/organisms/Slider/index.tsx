@@ -3,13 +3,12 @@ import React, { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
-import { IMovieCard } from "../MovieCard";
-import MovieCard from "../MovieCard";
+import MovieCard, { IMovieCard } from "../MovieCard";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-interface ISlider {
+export interface ISlider {
   moviesList: IMovieCard[];
 }
 
@@ -42,8 +41,8 @@ const Slider: FC<ISlider> = ({ moviesList }) => (
         <MovieCard
           id={movie.id}
           title={movie.title}
-          poster={movie.poster}
-          release={movie.release}
+          poster_path={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+          release_date={movie.release_date}
         />
       </SwiperSlide>
     ))}

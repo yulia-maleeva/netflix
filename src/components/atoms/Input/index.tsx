@@ -1,19 +1,21 @@
-import React, { FC, forwardRef, Ref } from "react";
+import React, { FC, forwardRef, Ref, RefObject } from "react";
 
 interface IInput {
   type: string;
   name: string;
   value?: string | number;
+  ref?: Ref<HTMLInputElement> | RefObject<HTMLInputElement>;
   placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   variant?: "filled" | "transparent";
   className?: string;
+  autoFocus?: boolean;
 }
 
 const Input: FC<IInput> = forwardRef(
   (
-    { type, name, value, placeholder, onChange, variant, className },
-    ref: Ref<HTMLInputElement>
+    { type, name, value, placeholder, onChange, variant, className, autoFocus },
+    ref
   ) => {
     const generateInputVariant = () => {
       switch (variant) {
@@ -31,12 +33,13 @@ const Input: FC<IInput> = forwardRef(
         type={type}
         name={name}
         value={value}
-        placeholder={placeholder}
         ref={ref}
+        placeholder={placeholder}
         onChange={onChange}
         className={`w-full h-full outline-none appearance-none ${generateInputVariant()} ${
           className || ""
         }`}
+        autoFocus={autoFocus}
       />
     );
   }

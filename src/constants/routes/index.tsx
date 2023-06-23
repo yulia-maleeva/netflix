@@ -1,12 +1,13 @@
 enum ROUTES {
-  SIGN_UP = "/sign-up",
-  SIGN_IN = "/sign-in",
   HOME = "/",
   MOVIES = "/movies",
   TRENDING = "/trending",
-  MOVIE = "/movie",
+  GENRE = "/genre/:id",
+  MOVIE = "/movie/:id",
   USER_PROFILE = "/user-profile",
   FAVOURITES = "/favourites",
+  SIGN_UP = "/sign-up",
+  SIGN_IN = "/sign-in",
 }
 
 export default ROUTES;

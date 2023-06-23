@@ -18,9 +18,35 @@ export default {
         },
       },
       width: {
+        25: "100px",
         50: "200px",
+        70: "300px",
+      },
+      gap: {
+        25: "100px",
+      },
+      backgroundImage: {
+        "main-image": "url('/public/assets/images/bg.jpg')",
+      },
+      brightness: {
+        40: "0.4",
+      },
+      padding: {
+        7.5: "30px",
+      },
+      fontSize: {
+        xxs: "10px",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase }) {
+      addBase({
+        ".search-input::-webkit-search-cancel-button": {
+          "-webkit-appearance": "none",
+          appearance: "none",
+        },
+      });
+    },
+  ],
 };

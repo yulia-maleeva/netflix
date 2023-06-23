@@ -1,5 +1,5 @@
 import React, { FC } from "react";
 
-const Favourites: FC = () => <div>Favourites</div>;
+const Favourites: FC = () => <p className="text-white">Favourites</p>;
 
 export default Favourites;

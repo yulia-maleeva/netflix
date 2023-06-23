@@ -1,5 +1,5 @@
 import React, { FC } from "react";
 
-const UserProfile: FC = () => <div>User Profile</div>;
+const UserProfile: FC = () => <p className="text-white">User Profile</p>;
 
 export default UserProfile;
