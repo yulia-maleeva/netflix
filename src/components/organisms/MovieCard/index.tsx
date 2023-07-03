@@ -5,6 +5,11 @@ import ROUTES from "../../../constants/routes";
 
 import { HeartIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
+import {
+  useAddToFavouritesMutation,
+  useGetFavouriteMoviesQuery,
+} from "../../../store/api";
+
 export interface IMovieCard {
   id: number | string;
   title: string;
@@ -19,20 +24,20 @@ const MovieCard: FC<IMovieCard> = ({
   release_date,
 }) => {
   const [isFavourite, setIsFavourite] = useState(false);
+  const [addToFavourites] = useAddToFavouritesMutation();
+  const { refetch } = useGetFavouriteMoviesQuery();
 
   const navigate = useNavigate();
 
-  const addToFavourites = () => {
-    setIsFavourite(!isFavourite);
-
-    //here will be the logic of adding to favourites
+  const handleAddToFavourites = async () => {
+    setIsFavourite(true);
+    await addToFavourites(id);
+    refetch();
   };
 
   const openMovieDetails = () => {
     navigate(`${ROUTES.MOVIE}${id}`);
   };
-
-  console.log(`${ROUTES.MOVIE}?${id}`);
 
   return (
     <div className="relative max-w-[150px] max-h-[300px]">
@@ -42,7 +47,7 @@ const MovieCard: FC<IMovieCard> = ({
         <div className="hidden group-hover:flex flex-col gap-2 p-2 group-hover:cursor-default">
           <div className="flex justify-between">
             <button
-              onClick={addToFavourites}
+              onClick={handleAddToFavourites}
               className="border border-white rounded-full p-1 opacity-80 hover:opacity-100 cursor-pointer"
             >
               <HeartIcon
