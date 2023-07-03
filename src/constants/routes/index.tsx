@@ -3,7 +3,7 @@ enum ROUTES {
   MOVIES = "/movies",
   TRENDING = "/trending",
   GENRE = "/genre/:id",
-  MOVIE = "/movie/:id",
+  MOVIE = "/movie",
   USER_PROFILE = "/user-profile",
   FAVOURITES = "/favourites",
   SIGN_UP = "/sign-up",

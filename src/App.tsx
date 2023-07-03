@@ -26,7 +26,7 @@ const App: FC = () => (
       <Route path={ROUTES.MOVIES} element={<Movies />} />
       <Route path={ROUTES.TRENDING} element={<Trending />} />
       <Route path={ROUTES.GENRE} element={<Genre />} />
-      <Route path={ROUTES.MOVIE} element={<Movie />} />
+      <Route path={`${ROUTES.MOVIE}/:id`} element={<Movie />} />
     </Route>
     <Route element={<AuthRoute />}>
       <Route path={ROUTES.USER_PROFILE} element={<UserProfile />} />

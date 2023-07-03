@@ -15,14 +15,19 @@ const TopRatedMovies: FC = () => {
 
   return (
     <section>
-      {topRatedMoviesError && <ErrorMessage />}
-      {topratedMoviesLoading && <Preloader />}
-      {topratedMovies && (
+      {topRatedMoviesError ? (
+        <ErrorMessage
+          status={topRatedMoviesError.status}
+          message={topRatedMoviesError.data.status_message}
+        />
+      ) : null}
+      {topratedMoviesLoading ? <Preloader /> : null}
+      {topratedMovies ? (
         <>
           <p className="text-xl font-medium text-white my-3">Top Rated</p>
           <Slider moviesList={topratedMovies.results} />
         </>
-      )}
+      ) : null}
     </section>
   );
 };

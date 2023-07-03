@@ -15,14 +15,19 @@ const UpcomingMovies: FC = () => {
 
   return (
     <section>
-      {upcomingMoviesError && <ErrorMessage />}
-      {upcomingMoviesLoading && <Preloader />}
-      {upcomingMovies && (
+      {upcomingMoviesError ? (
+        <ErrorMessage
+          status={upcomingMoviesError.status}
+          message={upcomingMoviesError.data.status_message}
+        />
+      ) : null}
+      {upcomingMoviesLoading ? <Preloader /> : null}
+      {upcomingMovies ? (
         <>
           <p className="text-xl font-medium text-white my-3">Upcoming</p>
           <Slider moviesList={upcomingMovies.results} />
         </>
-      )}
+      ) : null}
     </section>
   );
 };

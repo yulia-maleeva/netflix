@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ROUTES from "../../../constants/routes";
 
 import { HeartIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
@@ -20,19 +20,11 @@ const MovieCard: FC<IMovieCard> = ({
 }) => {
   const [isFavourite, setIsFavourite] = useState(false);
 
-  const navigate = useNavigate();
-
   const addToFavourites = () => {
     setIsFavourite(!isFavourite);
 
     //here will be the logic of adding to favourites
   };
-
-  const openMovieDetails = () => {
-    navigate(`${ROUTES.MOVIE}${id}`);
-  };
-
-  console.log(`${ROUTES.MOVIE}?${id}`);
 
   return (
     <div className="relative max-w-[150px] max-h-[300px]">
@@ -51,16 +43,16 @@ const MovieCard: FC<IMovieCard> = ({
                 }`}
               />
             </button>
-            <button
-              onClick={openMovieDetails}
-              className="border border-white rounded-full p-1 opacity-80 hover:opacity-100 cursor-pointer"
+            <Link
+              to={`${ROUTES.MOVIE}/${id}`}
+              className="border border-white rounded-full p-1 opacity-80 hover:opacity-100"
             >
               <ArrowRightIcon className="w-3 h-3 text-white" />
-            </button>
+            </Link>
           </div>
           <div>
             <h2 className="text-white text-xxs font-medium">{title}</h2>
-            <p className="text-white text-[8px]">{release_date}</p>
+            <p className="text-white text-xxxs">{release_date}</p>
           </div>
         </div>
       </div>

@@ -15,14 +15,19 @@ const PopularMovies: FC = () => {
 
   return (
     <section>
-      {popularMoviesError && <ErrorMessage />}
-      {popularMoviesLoading && <Preloader />}
-      {popularMovies && (
+      {popularMoviesError ? (
+        <ErrorMessage
+          status={popularMoviesError.status}
+          message={popularMoviesError.data.status_message}
+        />
+      ) : null}
+      {popularMoviesLoading ? <Preloader /> : null}
+      {popularMovies ? (
         <>
           <p className="text-xl font-medium text-white my-3">Popular</p>
           <Slider moviesList={popularMovies.results} />
         </>
-      )}
+      ) : null}
     </section>
   );
 };
