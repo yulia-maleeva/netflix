@@ -22,6 +22,9 @@ export default {
         50: "200px",
         70: "300px",
       },
+      height: {
+        100: "500px",
+      },
       gap: {
         25: "100px",
       },
@@ -36,6 +39,7 @@ export default {
       },
       fontSize: {
         xxs: "10px",
+        xxxs: "8px",
       },
     },
   },

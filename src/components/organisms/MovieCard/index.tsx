@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ROUTES from "../../../constants/routes";
 
 import { HeartIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
@@ -27,16 +27,10 @@ const MovieCard: FC<IMovieCard> = ({
   const [addToFavourites] = useAddToFavouritesMutation();
   const { refetch } = useGetFavouriteMoviesQuery();
 
-  const navigate = useNavigate();
-
   const handleAddToFavourites = async () => {
     setIsFavourite(true);
     await addToFavourites(id);
     refetch();
-  };
-
-  const openMovieDetails = () => {
-    navigate(`${ROUTES.MOVIE}${id}`);
   };
 
   return (
@@ -56,16 +50,16 @@ const MovieCard: FC<IMovieCard> = ({
                 }`}
               />
             </button>
-            <button
-              onClick={openMovieDetails}
-              className="border border-white rounded-full p-1 opacity-80 hover:opacity-100 cursor-pointer"
+            <Link
+              to={`${ROUTES.MOVIE}/${id}`}
+              className="border border-white rounded-full p-1 opacity-80 hover:opacity-100"
             >
               <ArrowRightIcon className="w-3 h-3 text-white" />
-            </button>
+            </Link>
           </div>
           <div>
             <h2 className="text-white text-xxs font-medium">{title}</h2>
-            <p className="text-white text-[8px]">{release_date}</p>
+            <p className="text-white text-xxxs">{release_date}</p>
           </div>
         </div>
       </div>
