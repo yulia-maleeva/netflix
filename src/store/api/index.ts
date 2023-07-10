@@ -43,17 +43,8 @@ export const tmdbApi = createApi({
     getFavouriteMovies: builder.query<IFavouriteMovie[], void>({
       query: () => ({
         url: `account/${ACCOUNT_ID}/favorite/movies`,
-        providesTags: (result: IFavouriteMovie[]) =>
-          result
-            ? [
-                ...result.map(({ id }) => ({
-                  type: "Favourites" as const,
-                  id,
-                })),
-                "Favourites",
-              ]
-            : ["Favourites"],
       }),
+      providesTags: ["Favourites"],
     }),
     addToFavourites: builder.mutation<IFavouriteMovie, number | string>({
       query: (id) => ({

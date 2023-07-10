@@ -5,10 +5,7 @@ import ROUTES from "../../../constants/routes";
 
 import { HeartIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
-import {
-  useAddToFavouritesMutation,
-  useGetFavouriteMoviesQuery,
-} from "../../../store/api";
+import { useAddToFavouritesMutation } from "../../../store/api";
 
 export interface IMovieCard {
   id: number | string;
@@ -25,12 +22,10 @@ const MovieCard: FC<IMovieCard> = ({
 }) => {
   const [isFavourite, setIsFavourite] = useState(false);
   const [addToFavourites] = useAddToFavouritesMutation();
-  const { refetch } = useGetFavouriteMoviesQuery();
 
   const handleAddToFavourites = async () => {
     setIsFavourite(true);
     await addToFavourites(id);
-    refetch();
   };
 
   return (
