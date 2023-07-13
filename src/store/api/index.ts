@@ -36,6 +36,11 @@ export const tmdbApi = createApi({
         url: `movie/${id}`,
       }),
     }),
+    getMovieSearch: builder.query({
+      query: (title) => ({
+        url: `search/movie?query=${title}`,
+      }),
+    }),
   }),
 });
 
@@ -44,4 +49,5 @@ export const {
   useGetTopRatedMoviesQuery,
   useGetUpcomingMoviesQuery,
   useGetMovieQuery,
+  useGetMovieSearchQuery,
 } = tmdbApi;

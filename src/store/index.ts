@@ -1,15 +1,12 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { tmdbApi } from "./api";
+import searchReducer from "../store/slices/searchSlice";
 
 export const store = configureStore({
   reducer: {
     [tmdbApi.reducerPath]: tmdbApi.reducer,
+    search: searchReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(tmdbApi.middleware),
 });
-
-// Infer the `RootState` and `AppDispatch` types from the store itself
-//export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-//export type AppDispatch = typeof store.dispatch;
