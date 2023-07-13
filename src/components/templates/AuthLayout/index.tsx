@@ -9,11 +9,10 @@ interface AuthLayout {
   children?: ReactNode;
 }
 
-const AuthLayout: FC<AuthLayout> = ({ children }) => (
+const AuthLayout: FC<AuthLayout> = () => (
   <div className="px-7.5">
     <Header />
     <main>
-      {children}
       <Outlet />
     </main>
     <Footer />
