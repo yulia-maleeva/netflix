@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import ROUTES from "../../../constants/routes";
+
 import Navbar from "../../organisms/Navbar/Navbar";
 import Search from "../../molecules/Search";
 

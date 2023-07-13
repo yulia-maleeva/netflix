@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import Preloader from "../../../components/atoms/Preloader";
 import ErrorMessage from "../../../components/atoms/ErrorMessage";
@@ -18,7 +18,7 @@ interface IMovieSearch {
   release_date: string;
 }
 
-const MovieSearch = () => {
+const MovieSearch: FC = () => {
   const searchValue = useSelector((state) => state.search);
 
   const {
@@ -40,50 +40,48 @@ const MovieSearch = () => {
     return <Preloader />;
   }
 
-  console.log(searchingMoviesLoading);
-
-  if (searchingMovies && searchingMovies.results.length > 0) {
-    return (
-      <div className="grid grid-cols-10 gap-4">
-        {searchingMovies.results.map((movie: IMovieSearch) => (
-          <div
-            key={movie.id}
-            className="flex flex-col bg-zinc-800 rounded-md overflow-hidden cursor-pointer"
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <div className="flex flex-col gap-2 p-2">
-              <div className="flex justify-between">
-                <button className="border border-white rounded-full p-1 opacity-80 hover:opacity-100 cursor-pointer">
-                  <HeartIcon className="w-4 h-4 text-white" />
-                </button>
-                <Link
-                  to={`${ROUTES.MOVIE}/${movie.id}`}
-                  className="border border-white rounded-full p-1 opacity-80 hover:opacity-100"
-                >
-                  <ArrowRightIcon className="w-4 h-4 text-white" />
-                </Link>
+  return (
+    <>
+      {searchingMovies && searchingMovies.results.length > 0 ? (
+        <div className="grid grid-cols-10 gap-4">
+          {searchingMovies.results.map((movie: IMovieSearch) => (
+            <div
+              key={movie.id}
+              className="flex flex-col bg-zinc-800 rounded-md overflow-hidden cursor-pointer"
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <div className="flex flex-col gap-2 p-2">
+                <div className="flex justify-between">
+                  <button className="border border-white rounded-full p-1 opacity-80 hover:opacity-100 cursor-pointer">
+                    <HeartIcon className="w-4 h-4 text-white" />
+                  </button>
+                  <Link
+                    to={`${ROUTES.MOVIE}/${movie.id}`}
+                    className="border border-white rounded-full p-1 opacity-80 hover:opacity-100"
+                  >
+                    <ArrowRightIcon className="w-4 h-4 text-white" />
+                  </Link>
+                </div>
+                <h2 className="text-white text-base font-medium text-center">
+                  {movie.title}
+                </h2>
+                <p className="text-white text-xs text-center">
+                  {movie.release_date}
+                </p>
               </div>
-              <h2 className="text-white text-base font-medium text-center">
-                {movie.title}
-              </h2>
-              <p className="text-white text-xs text-center">
-                {movie.release_date}
-              </p>
             </div>
-          </div>
-        ))}
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <p className="text-white">Unfortunately, there are no such movies.</p>
-      </div>
-    );
-  }
+          ))}
+        </div>
+      ) : (
+        <div>
+          <p className="text-white">Unfortunately, there are no such movies.</p>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default MovieSearch;
