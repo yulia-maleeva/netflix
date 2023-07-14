@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IMovieCard } from "../../components/organisms/MovieCard";
-import { IFavouriteMovie } from "../../UI/pages/Favourites";
+import tagNames from "~/constants/tagNames";
 
-import tagNames from "../../constants/tagNames";
+import { IMovieCard } from "~/components/organisms/MovieCard";
+import { IFavouriteMovie } from "~/UI/pages/Favourites";
 
 const ACCESS_TOKEN =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZDdmMmQ0OTAwZGFlNzUzYmZhODM2ZmQ3NTcwMDc2MCIsInN1YiI6IjY0NThiZGIxNzdkMjNiMDE1MzkzYmQ4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hEBwi2m70WbJEsi6BhwAx9z8KIwB0ThAVQx_6q9VgYI";

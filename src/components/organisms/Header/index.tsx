@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
-import ROUTES from "../../../constants/routes";
+import ROUTES from "~/constants/routes";
 
-import Navbar from "../../organisms/Navbar/Navbar";
-import Search from "../../molecules/Search";
+import Navbar from "~/components/organisms/Navbar";
+import Search from "~/components/molecules/Search";
 
 const Header: FC = () => {
   const [searchBarValue, setSearchBarValue] = useState("");

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
 import { Outlet, Navigate } from "react-router-dom";
-import ROUTES from "../../../constants/routes";
+import ROUTES from "~/constants/routes";
 
-import AuthLayout from "../../../components/templates/AuthLayout";
-import NonAuthLayout from "../../../components/templates/NonAuthLayout";
+import AuthLayout from "~/components/templates/AuthLayout";
+import NonAuthLayout from "~/components/templates/NonAuthLayout";
 
 const isAuthorized: boolean = true;
 

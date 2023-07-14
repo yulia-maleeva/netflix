@@ -2,7 +2,7 @@ import React, { FC, useState, useRef } from "react";
 
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
-import Input from "../../atoms/Input";
+import Input from "~/components/atoms/Input";
 
 interface ISearch {
   handleChange: (value: string) => void;

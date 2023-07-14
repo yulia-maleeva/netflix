@@ -2,8 +2,8 @@ import React, { FC, ReactNode } from "react";
 
 import { Outlet } from "react-router-dom";
 
-import Header from "../../organisms/Header";
-import Footer from "../../organisms/Footer";
+import Header from "~/components/organisms/Header";
+import Footer from "~/components/organisms/Footer";
 
 interface AuthLayout {
   children?: ReactNode;

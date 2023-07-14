@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
-import MovieCard, { IMovieCard } from "../MovieCard";
+import MovieCard, { IMovieCard } from "~/components/organisms/MovieCard";
 
 import "swiper/css";
 import "swiper/css/navigation";

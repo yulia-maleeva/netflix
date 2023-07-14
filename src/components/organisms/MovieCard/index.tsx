@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
 
 import { Link } from "react-router-dom";
-import ROUTES from "../../../constants/routes";
+import ROUTES from "~/constants/routes";
 
 import { HeartIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
-import { useAddToFavouritesMutation } from "../../../store/api";
+import { useAddToFavouritesMutation } from "~/store/api";
 
 export interface IMovieCard {
   id: number | string;

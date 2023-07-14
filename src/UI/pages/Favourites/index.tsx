@@ -1,17 +1,17 @@
 import React, { FC } from "react";
 
 import { Link } from "react-router-dom";
-import ROUTES from "../../../constants/routes";
+import ROUTES from "~/constants/routes";
 
-import Preloader from "../../../components/atoms/Preloader";
-import ErrorMessage from "../../../components/atoms/ErrorMessage";
+import Preloader from "~/components/atoms/Preloader";
+import ErrorMessage from "~/components/atoms/ErrorMessage";
 
 import { TrashIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 import {
   useGetFavouriteMoviesQuery,
   useRemoveFromFavouritesMutation,
-} from "../../../store/api";
+} from "~/store/api";
 
 export interface IFavouriteMovie {
   id: number | string;

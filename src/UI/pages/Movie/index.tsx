@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 
-import Preloader from "../../../components/atoms/Preloader";
-import ErrorMessage from "../../../components/atoms/ErrorMessage";
+import Preloader from "~/components/atoms/Preloader";
+import ErrorMessage from "~/components/atoms/ErrorMessage";
 
 import { useParams } from "react-router-dom";
 
-import { useGetMovieQuery } from "../../../store/api";
+import { useGetMovieQuery } from "~/store/api";
 
 const Movie: FC = () => {
   const { id } = useParams();

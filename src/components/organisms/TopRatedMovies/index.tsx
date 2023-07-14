@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-import Slider from "../../../components/organisms/Slider";
-import Preloader from "../../atoms/Preloader";
-import ErrorMessage from "../../atoms/ErrorMessage";
+import Slider from "~/components/organisms/Slider";
+import Preloader from "~/components/atoms/Preloader";
+import ErrorMessage from "~/components/atoms/ErrorMessage";
 
-import { useGetTopRatedMoviesQuery } from "../../../store/api";
+import { useGetTopRatedMoviesQuery } from "~/store/api";
 
 const TopRatedMovies: FC = () => {
   const {
