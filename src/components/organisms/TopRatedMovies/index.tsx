@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import Slider from "../Slider";
+import Slider from "~/components/organisms/Slider";
 import Preloader from "~/components/atoms/Preloader";
 import ErrorMessage from "~/components/atoms/ErrorMessage";
 

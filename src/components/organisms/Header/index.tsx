@@ -3,7 +3,7 @@ import React, { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ROUTES from "~/constants/routes";
 
-import Navbar from "../Navbar";
+import Navbar from "~/components/organisms/Navbar";
 import Search from "~/components/molecules/Search";
 
 const Header: FC = () => {
