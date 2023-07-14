@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import { useNavigate } from "react-router-dom";
-import ROUTES from "../../../constants/routes";
+import ROUTES from "~/constants/routes";
 
 interface IGenre {
   id: number | string;

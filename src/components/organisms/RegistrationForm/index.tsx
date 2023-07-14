@@ -1,18 +1,18 @@
 import React, { FC } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
-import { IFormInputs } from "../../../types";
+import { IFormInputs } from "~/types";
 
 import { Link } from "react-router-dom";
-import ROUTES from "../../../constants/routes";
+import ROUTES from "~/constants/routes";
 
-import Button from "../../atoms/Button";
+import Button from "~/components/atoms/Button";
 
 import {
   TextController,
   EmailController,
   PasswordController,
-} from "../../molecules/FormControllers";
+} from "~/components/molecules/FormControllers";
 
 const RegistrationForm: FC = () => {
   const { handleSubmit, control, reset } = useForm<IFormInputs>({
