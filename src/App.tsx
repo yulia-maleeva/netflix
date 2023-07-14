@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import AuthLayout from "./components/templates/AuthLayout";
 
 import { Routes, Route } from "react-router-dom";
-import ROUTES from "../src/constants/routes/index";
+import ROUTES from "./constants/routes";
 
 import Home from "./UI/pages/Home";
 import Movies from "./UI/pages/Movies";

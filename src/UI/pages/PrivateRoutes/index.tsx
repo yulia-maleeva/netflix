@@ -6,7 +6,7 @@ import ROUTES from "~/constants/routes";
 import AuthLayout from "~/components/templates/AuthLayout";
 import NonAuthLayout from "~/components/templates/NonAuthLayout";
 
-const isAuthorized: boolean = false;
+const isAuthorized: boolean = true;
 
 export const AuthRoute: FC = () => {
   return isAuthorized ? (
