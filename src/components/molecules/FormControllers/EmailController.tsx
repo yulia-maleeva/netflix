@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 
 import { Controller } from "react-hook-form";
+import { IController } from "~/types";
 
-import { IController } from "../../../types";
-
-import Input from "../../atoms/Input";
-import FormErrorMessage from "../../atoms/FormErrorMessage";
+import Input from "~/components/atoms/Input";
+import FormErrorMessage from "~/components/atoms/FormErrorMessage";
 
 const EmailController: FC<IController> = ({
   name,

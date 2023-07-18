@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 
-import Preloader from "../../../components/atoms/Preloader";
-import ErrorMessage from "../../../components/atoms/ErrorMessage";
+import Preloader from "~/components/atoms/Preloader";
+import ErrorMessage from "~/components/atoms/ErrorMessage";
 
-import ROUTES from "../../../constants/routes";
+import ROUTES from "~/constants/routes";
 import { Link } from "react-router-dom";
 
 import { HeartIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
-import { useGetMovieSearchQuery } from "../../../store/api";
+import { useGetMovieSearchQuery } from "~/store/api";
+
 import { useSelector } from "react-redux";
 
 interface IMovieSearch {
@@ -25,6 +26,7 @@ const MovieSearch: FC = () => {
     data: searchingMovies,
     error: searchingMoviesError,
     isLoading: searchingMoviesLoading,
+    isFetching: searchingMoviesFetching,
   } = useGetMovieSearchQuery(searchValue);
 
   if (searchingMoviesError) {
@@ -36,7 +38,7 @@ const MovieSearch: FC = () => {
     );
   }
 
-  if (searchingMoviesLoading) {
+  if (searchingMoviesLoading || searchingMoviesFetching) {
     return <Preloader />;
   }
 

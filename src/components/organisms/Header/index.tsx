@@ -2,10 +2,10 @@ import React, { FC } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
-import ROUTES from "../../../constants/routes";
+import ROUTES from "~/constants/routes";
 
-import Navbar from "../../organisms/Navbar/Navbar";
-import Search from "../../molecules/Search";
+import Navbar from "~/components/organisms/Navbar";
+import Search from "~/components/molecules/Search";
 
 import { useDispatch } from "react-redux";
 import { setSearchValue } from "../../../store/slices/searchSlice";

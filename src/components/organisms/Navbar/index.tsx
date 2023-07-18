@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import { Link } from "react-router-dom";
 
-import navLinks from "../../../constants/navLinks";
+import navLinks from "~/constants/navLinks";
 
 const Navbar: FC = () => (
   <nav>

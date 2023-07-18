@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { tmdbApi } from "./api";
-import searchReducer from "../store/slices/searchSlice";
+import { tmdbApi } from "~/store/api";
+
+import searchReducer from "~/store/slices/searchSlice";
 
 export const store = configureStore({
   reducer: {
