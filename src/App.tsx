@@ -22,7 +22,7 @@ const App: FC = () => (
   <Routes>
     <Route element={<AuthLayout />}>
       <Route path={ROUTES.HOME} element={<Home />} />
-      <Route path={ROUTES.MOVIES} element={<Movies />} />
+      <Route path={`${ROUTES.MOVIES}/:type?`} element={<Movies />} />
       <Route path={ROUTES.TRENDING} element={<Trending />} />
       <Route path={ROUTES.GENRE} element={<Genre />} />
       <Route path={`${ROUTES.MOVIE}/:id`} element={<Movie />} />

@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import tagNames from "~/constants/tagNames";
 
 import { IMovieCard } from "~/components/organisms/MovieCard";
+import { IMovies } from "~/UI/pages/Movies";
 import { IFavouriteMovie } from "~/UI/pages/Favourites";
 
 const ACCESS_TOKEN =
@@ -35,6 +36,14 @@ export const tmdbApi = createApi({
     getUpcomingMovies: builder.query<IMovieCard[], void>({
       query: () => ({
         url: `movie/upcoming`,
+      }),
+    }),
+    getMoviesByType: builder.query({
+      query: ({ type, page }) => ({
+        url: `movie/${type}`,
+        params: {
+          page,
+        },
       }),
     }),
     getMovie: builder.query({
@@ -79,6 +88,7 @@ export const {
   useGetPopularMoviesQuery,
   useGetTopRatedMoviesQuery,
   useGetUpcomingMoviesQuery,
+  useGetMoviesByTypeQuery,
   useGetMovieQuery,
   useGetFavouriteMoviesQuery,
   useAddToFavouritesMutation,
