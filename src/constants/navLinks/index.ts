@@ -5,7 +5,7 @@ interface INavLink {
   url: string;
 }
 
-export const navLinks: INavLink[] = [
+const navLinks: INavLink[] = [
   { name: "Home", url: ROUTES.HOME },
   { name: "Movies", url: ROUTES.MOVIES },
   { name: "New and popular", url: ROUTES.TRENDING },

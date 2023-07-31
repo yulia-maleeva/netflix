@@ -8,11 +8,13 @@ import ROUTES from "~/constants/routes";
 import Preloader from "~/components/atoms/Preloader";
 import ErrorMessage from "~/components/atoms/ErrorMessage";
 
+import movieTypes from "~/constants/movieTypes";
+
 import { HeartIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 import { useGetMoviesByTypeQuery } from "~/store/api";
 
-export interface IMovies {
+interface IMovies {
   id: number | string;
   title: string;
   poster_path: string;
@@ -21,12 +23,15 @@ export interface IMovies {
 }
 
 const Movies: FC = () => {
+  const defaultType = "popular";
+
   const { type } = useParams();
 
-  const [currentPage, setcurrentPage] = useState(1);
+  const [moviesType, setMoviesType] = useState(type || defaultType);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { data, error, isLoading, isFetching } = useGetMoviesByTypeQuery({
-    type: type || "popular",
+    type: moviesType,
     page: currentPage,
   });
 
@@ -40,6 +45,11 @@ const Movies: FC = () => {
     return <Preloader />;
   }
 
+  const handleClick = (selectedType: string) => {
+    setMoviesType(selectedType);
+    setCurrentPage(1);
+  };
+
   return (
     <>
       <div className="flex gap-10">
@@ -49,9 +59,22 @@ const Movies: FC = () => {
               Choose the type:
             </p>
             <ul className="flex flex-col gap-2 text-white">
-              <li>Popular</li>
-              <li>Top Rated</li>
-              <li>Upcoming</li>
+              {movieTypes.map((movieType) => (
+                <li
+                  key={movieType.name}
+                  onClick={() => handleClick(movieType.type)}
+                >
+                  <button
+                    className={
+                      moviesType === movieType.type
+                        ? "text-red-650 font-medium"
+                        : ""
+                    }
+                  >
+                    {movieType.name}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
@@ -59,9 +82,12 @@ const Movies: FC = () => {
               Choose the genre:
             </p>
             <ul className="flex flex-col gap-2 text-white">
-              <li>Genre</li>
-              <li>Genre</li>
-              <li>Genre</li>
+              <li>Genre 1</li>
+              <li>Genre 2</li>
+              <li>Genre 3</li>
+              <li>Genre 4</li>
+              <li>Genre 5</li>
+              <li>Genre 6</li>
             </ul>
           </div>
         </div>
@@ -102,14 +128,14 @@ const Movies: FC = () => {
               </div>
               <div className="text-white">
                 <button
-                  onClick={() => setcurrentPage(currentPage - 1)}
+                  onClick={() => setCurrentPage(currentPage - 1)}
                   disabled={currentPage === 1}
                 >
                   &lt;
                 </button>
                 ...
                 <button
-                  onClick={() => setcurrentPage(currentPage + 1)}
+                  onClick={() => setCurrentPage(currentPage + 1)}
                   disabled={currentPage === data.total_pages}
                 >
                   &gt;
