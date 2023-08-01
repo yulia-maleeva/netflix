@@ -9,6 +9,7 @@ import Movies from "~/UI/pages/Movies";
 import Trending from "~/UI/pages/Trending";
 import Genre from "~/UI/pages/Genre";
 import Movie from "~/UI/pages/Movie";
+import MovieSearch from "~/UI/pages/MovieSearch";
 
 import { AuthRoute, NonAuthRoute } from "~/UI/pages/PrivateRoutes";
 import UserProfile from "~/UI/pages/UserProfile";
@@ -26,6 +27,7 @@ const App: FC = () => (
       <Route path={ROUTES.TRENDING} element={<Trending />} />
       <Route path={ROUTES.GENRE} element={<Genre />} />
       <Route path={`${ROUTES.MOVIE}/:id`} element={<Movie />} />
+      <Route path={ROUTES.MOVIE_SEARCH} element={<MovieSearch />} />
     </Route>
     <Route element={<AuthRoute />}>
       <Route path={ROUTES.USER_PROFILE} element={<UserProfile />} />
