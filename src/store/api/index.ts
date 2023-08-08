@@ -51,6 +51,11 @@ export const tmdbApi = createApi({
         url: `movie/${id}`,
       }),
     }),
+    getMovieSearch: builder.query({
+      query: (title) => ({
+        url: `search/movie?query=${title}`,
+      }),
+    }),
     getFavouriteMovies: builder.query<IFavouriteMovie[], void>({
       query: () => ({
         url: `account/${ACCOUNT_ID}/favorite/movies`,
@@ -90,6 +95,7 @@ export const {
   useGetUpcomingMoviesQuery,
   useGetMoviesByTypeQuery,
   useGetMovieQuery,
+  useGetMovieSearchQuery,
   useGetFavouriteMoviesQuery,
   useAddToFavouritesMutation,
   useRemoveFromFavouritesMutation,

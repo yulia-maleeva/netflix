@@ -4,6 +4,7 @@ enum ROUTES {
   TRENDING = "/trending",
   GENRE = "/genre/:id",
   MOVIE = "/movie",
+  MOVIE_SEARCH = "/movie-search",
   USER_PROFILE = "/user-profile",
   FAVOURITES = "/favourites",
   SIGN_UP = "/sign-up",
