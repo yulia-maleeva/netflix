@@ -9,10 +9,11 @@ import Movies from "~/UI/pages/Movies";
 import Trending from "~/UI/pages/Trending";
 import Genre from "~/UI/pages/Genre";
 import Movie from "~/UI/pages/Movie";
-import About from "./UI/pages/About";
-import PrivacyPolicy from "./UI/pages/PrivacyPolicy";
-import TermsOfUse from "./UI/pages/TermsOfUse";
-import Cookies from "./UI/pages/Cookies";
+import About from "~/UI/pages/About";
+import PrivacyPolicy from "~/UI/pages/PrivacyPolicy";
+import TermsOfUse from "~/UI/pages/TermsOfUse";
+import Cookies from "~/UI/pages/Cookies";
+import MovieSearch from "~/UI/pages/MovieSearch";
 
 import { AuthRoute, NonAuthRoute } from "~/UI/pages/PrivateRoutes";
 import UserProfile from "~/UI/pages/UserProfile";
@@ -26,7 +27,7 @@ const App: FC = () => (
   <Routes>
     <Route element={<AuthLayout />}>
       <Route path={ROUTES.HOME} element={<Home />} />
-      <Route path={ROUTES.MOVIES} element={<Movies />} />
+      <Route path={`${ROUTES.MOVIES}/:type?`} element={<Movies />} />
       <Route path={ROUTES.TRENDING} element={<Trending />} />
       <Route path={ROUTES.GENRE} element={<Genre />} />
       <Route path={`${ROUTES.MOVIE}/:id`} element={<Movie />} />
@@ -34,6 +35,7 @@ const App: FC = () => (
       <Route path={ROUTES.PRIVACY_POLICY} element={<PrivacyPolicy />} />
       <Route path={ROUTES.TERMS_OF_USE} element={<TermsOfUse />} />
       <Route path={ROUTES.COOKIES} element={<Cookies />} />
+      <Route path={ROUTES.MOVIE_SEARCH} element={<MovieSearch />} />
     </Route>
     <Route element={<AuthRoute />}>
       <Route path={ROUTES.USER_PROFILE} element={<UserProfile />} />

@@ -1,25 +1,23 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import ROUTES from "~/constants/routes";
 
 import Navbar from "~/components/organisms/Navbar";
 import Search from "~/components/molecules/Search";
 
-const Header: FC = () => {
-  const [searchBarValue, setSearchBarValue] = useState("");
+import { useDispatch } from "react-redux";
+import { setSearchValue } from "../../../store/slices/searchSlice";
 
-  const fakeApiCall = (searchBarValue: string) => {
-    console.log(searchBarValue);
-  };
+const Header: FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (value: string) => {
-    setSearchBarValue(value);
+    dispatch(setSearchValue(value));
+    navigate(ROUTES.MOVIE_SEARCH);
   };
-
-  useEffect(() => {
-    fakeApiCall(searchBarValue);
-  }, [searchBarValue]);
 
   return (
     <>
@@ -34,9 +32,10 @@ const Header: FC = () => {
           </Link>
           <Navbar />
         </div>
-        <Search handleChange={handleChange} delay={2000} />
+        <Search handleChange={handleChange} delay={1000} />
       </header>
     </>
   );
 };
+
 export default Header;

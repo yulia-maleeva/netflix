@@ -8,6 +8,7 @@ enum ROUTES {
   PRIVACY_POLICY = "/privacy-policy",
   TERMS_OF_USE = "/terms-of-use",
   COOKIES = "/cookies",
+  MOVIE_SEARCH = "/movie-search",
   USER_PROFILE = "/user-profile",
   FAVOURITES = "/favourites",
   SIGN_UP = "/sign-up",
