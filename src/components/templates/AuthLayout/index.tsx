@@ -12,7 +12,7 @@ interface AuthLayout {
 const AuthLayout: FC<AuthLayout> = () => (
   <div className="px-7.5">
     <Header />
-    <main>
+    <main className="my-12">
       <Outlet />
     </main>
     <Footer />
