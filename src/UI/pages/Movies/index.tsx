@@ -7,6 +7,7 @@ import ROUTES from "~/constants/routes";
 
 import Preloader from "~/components/atoms/Preloader";
 import ErrorMessage from "~/components/atoms/ErrorMessage";
+import Pagination from "~/components/molecules/Pagination";
 
 import movieTypes from "~/constants/movieTypes";
 
@@ -48,6 +49,10 @@ const Movies: FC = () => {
   const handleClick = (selectedType: string) => {
     setMoviesType(selectedType);
     setCurrentPage(1);
+  };
+
+  const handlePageChange = (newPageNumber: number) => {
+    setCurrentPage(newPageNumber);
   };
 
   return (
@@ -126,21 +131,11 @@ const Movies: FC = () => {
                   </div>
                 ))}
               </div>
-              <div className="text-white">
-                <button
-                  onClick={() => setCurrentPage(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  &lt;
-                </button>
-                ...
-                <button
-                  onClick={() => setCurrentPage(currentPage + 1)}
-                  disabled={currentPage === data.total_pages}
-                >
-                  &gt;
-                </button>
-              </div>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={500}
+                onPageChange={handlePageChange}
+              />
             </>
           ) : (
             <div>
